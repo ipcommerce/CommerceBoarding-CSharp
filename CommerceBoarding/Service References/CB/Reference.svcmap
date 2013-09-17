@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7615988d-928a-4d2a-87ab-6afea8c4fb56" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://cws-01.cert.ipcommerce.com/2.0.18/CommerceBoarding/MEX" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="v1.0.wsdl" MetadataType="Wsdl" ID="382554fc-a928-4349-8900-54fb27694437" SourceId="1" SourceUrl="https://cws-01.cert.ipcommerce.com/2.0.18/CommerceBoarding/MEX" />
+    <MetadataFile FileName="v1.0.xsd" MetadataType="Schema" ID="bba2d0ec-f876-4bec-8067-41d8fe60093c" SourceId="1" SourceUrl="https://cws-01.cert.ipcommerce.com/2.0.18/CommerceBoarding/MEX" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="360c0698-5e54-4674-8114-45df565e8608" SourceId="1" SourceUrl="https://cws-01.cert.ipcommerce.com/2.0.18/CommerceBoarding/MEX" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="c1b1ec2b-f0b3-402b-bed9-8e64a0a982da" SourceId="1" SourceUrl="https://cws-01.cert.ipcommerce.com/2.0.18/CommerceBoarding/MEX" />
+    <MetadataFile FileName="Faults.xsd" MetadataType="Schema" ID="9f0ffbf4-3fdd-42ab-b597-bd15c3c69da0" SourceId="1" SourceUrl="https://cws-01.cert.ipcommerce.com/2.0.18/CommerceBoarding/MEX" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="c38d535b-0ff6-4f53-a30e-fe66cf7d6266" SourceId="1" SourceUrl="https://cws-01.cert.ipcommerce.com/2.0.18/CommerceBoarding/MEX" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

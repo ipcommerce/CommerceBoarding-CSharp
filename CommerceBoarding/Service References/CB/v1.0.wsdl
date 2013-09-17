@@ -1,0 +1,840 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CommerceBoardingProcessing" targetNamespace="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="CommerceBoarding_ICommerceBoarding_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Imports">
+      <xsd:import namespace="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" />
+      <xsd:import namespace="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" />
+      <xsd:import namespace="http://schemas.ipcommerce.com/Identity/1.0/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICommerceBoarding_CreateApplication_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateApplication" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_CreateApplication_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateApplicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_CreateApplication_ApplicationValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q1:ApplicationValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_CreateApplication_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q2:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_CreateApplication_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q3:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_CreateApplication_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q4:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_CreateApplication_CommerceBoardingServiceUnavailableFaultFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q5:CommerceBoardingServiceUnavailableFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_CreateApplication_InternalServerErrorFaultFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q6:InternalServerErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_CreateApplication_UnknownInputFieldFaultFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q7:UnknownInputFieldFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_CreateApplication_EmptyArgumentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q8:EmptyArgumentFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_CreateApplication_UnknownApplicationProfileIdFaultFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q9:UnknownApplicationProfileIdFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_CreateApplication_NotAuthorizedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q10:NotAuthorizedFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_UpdateApplication_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateApplication" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_UpdateApplication_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateApplicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_UpdateApplication_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q11:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_UpdateApplication_ApplicationValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q12:ApplicationValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_UpdateApplication_NotAuthorizedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q13:NotAuthorizedFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_UpdateApplication_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q14:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_UpdateApplication_UnknownApplicationGuidFaultFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q15:UnknownApplicationGuidFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_UpdateApplication_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q16:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_UpdateApplication_InternalServerErrorFaultFault_FaultMessage">
+    <wsdl:part xmlns:q17="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q17:InternalServerErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_UpdateApplication_EmptyArgumentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q18="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q18:EmptyArgumentFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_UpdateApplication_ApplicationStateFaultFault_FaultMessage">
+    <wsdl:part xmlns:q19="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q19:ApplicationStateFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_UpdateApplication_UnknownInputFieldFaultFault_FaultMessage">
+    <wsdl:part xmlns:q20="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q20:UnknownInputFieldFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_SaveApplication_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveApplication" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_SaveApplication_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveApplicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_SaveApplication_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q21="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q21:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_SaveApplication_ApplicationValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q22="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q22:ApplicationValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_SaveApplication_NotAuthorizedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q23="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q23:NotAuthorizedFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_SaveApplication_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q24="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q24:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_SaveApplication_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q25="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q25:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_SaveApplication_UnknownApplicationGuidFaultFault_FaultMessage">
+    <wsdl:part xmlns:q26="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q26:UnknownApplicationGuidFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_SaveApplication_ApplicationStateFaultFault_FaultMessage">
+    <wsdl:part xmlns:q27="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q27:ApplicationStateFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_SaveApplication_InternalServerErrorFaultFault_FaultMessage">
+    <wsdl:part xmlns:q28="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q28:InternalServerErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_SaveApplication_UnknownInputFieldFaultFault_FaultMessage">
+    <wsdl:part xmlns:q29="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q29:UnknownInputFieldFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_SaveApplication_EmptyArgumentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q30="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q30:EmptyArgumentFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_BeginQualification_InputMessage">
+    <wsdl:part name="parameters" element="tns:BeginQualification" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_BeginQualification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BeginQualificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_BeginQualification_NotAuthorizedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q31="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q31:NotAuthorizedFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_BeginQualification_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q32="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q32:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_BeginQualification_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q33="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q33:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_BeginQualification_UnknownApplicationGuidFaultFault_FaultMessage">
+    <wsdl:part xmlns:q34="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q34:UnknownApplicationGuidFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_BeginQualification_ApplicationStateFaultFault_FaultMessage">
+    <wsdl:part xmlns:q35="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q35:ApplicationStateFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_BeginQualification_ApplicationValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q36="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q36:ApplicationValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_BeginQualification_EmptyArgumentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q37="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q37:EmptyArgumentFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_BeginQualification_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q38="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q38:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetIdQuestions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIdQuestions" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetIdQuestions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIdQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetIdQuestions_NotAuthorizedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q39="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q39:NotAuthorizedFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetIdQuestions_IdentityQuestionsNotFoundFaultFault_FaultMessage">
+    <wsdl:part xmlns:q40="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q40:IdentityQuestionsNotFoundFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetIdQuestions_EmptyArgumentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q41="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q41:EmptyArgumentFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetIdQuestions_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q42="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q42:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetIdQuestions_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q43="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q43:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetIdQuestions_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q44="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q44:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetIdQuestions_UnknownApplicationGuidFaultFault_FaultMessage">
+    <wsdl:part xmlns:q45="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q45:UnknownApplicationGuidFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetIdQuestions_ApplicationStateFaultFault_FaultMessage">
+    <wsdl:part xmlns:q46="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q46:ApplicationStateFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetIdQuestions_InternalServerErrorFaultFault_FaultMessage">
+    <wsdl:part xmlns:q47="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q47:InternalServerErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_AnswerIdQuestions_InputMessage">
+    <wsdl:part name="parameters" element="tns:AnswerIdQuestions" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_AnswerIdQuestions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AnswerIdQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_AnswerIdQuestions_ApplicationStateFaultFault_FaultMessage">
+    <wsdl:part xmlns:q48="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q48:ApplicationStateFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_AnswerIdQuestions_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q49="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q49:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_AnswerIdQuestions_UnknownApplicationGuidFaultFault_FaultMessage">
+    <wsdl:part xmlns:q50="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q50:UnknownApplicationGuidFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_AnswerIdQuestions_UnknownQuestionsIdFaultFault_FaultMessage">
+    <wsdl:part xmlns:q51="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q51:UnknownQuestionsIdFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_AnswerIdQuestions_EmptyArgumentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q52="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q52:EmptyArgumentFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_AnswerIdQuestions_NotAuthorizedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q53="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q53:NotAuthorizedFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_AnswerIdQuestions_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q54="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q54:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_AnswerIdQuestions_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q55="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q55:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetQualificationResult_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQualificationResult" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetQualificationResult_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQualificationResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetQualificationResult_UnknownApplicationGuidFaultFault_FaultMessage">
+    <wsdl:part xmlns:q56="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q56:UnknownApplicationGuidFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetQualificationResult_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q57="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q57:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetQualificationResult_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q58="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q58:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetQualificationResult_InternalServerErrorFaultFault_FaultMessage">
+    <wsdl:part xmlns:q59="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q59:InternalServerErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetQualificationResult_EmptyArgumentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q60="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q60:EmptyArgumentFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetQualificationResult_NotAuthorizedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q61="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q61:NotAuthorizedFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetQualificationResult_ApplicationStateFaultFault_FaultMessage">
+    <wsdl:part xmlns:q62="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q62:ApplicationStateFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetQualificationResult_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q63="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q63:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplication_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetApplication" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplication_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetApplicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplication_ApplicationStateFaultFault_FaultMessage">
+    <wsdl:part xmlns:q64="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q64:ApplicationStateFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplication_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q65="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q65:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplication_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q66="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q66:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplication_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q67="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q67:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplication_UnknownApplicationGuidFaultFault_FaultMessage">
+    <wsdl:part xmlns:q68="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q68:UnknownApplicationGuidFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplication_InternalServerErrorFaultFault_FaultMessage">
+    <wsdl:part xmlns:q69="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q69:InternalServerErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplication_EmptyArgumentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q70="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q70:EmptyArgumentFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplication_NotAuthorizedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q71="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q71:NotAuthorizedFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_ListApplications_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListApplications" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_ListApplications_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListApplicationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_ListApplications_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q72="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q72:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_ListApplications_InternalServerErrorFaultFault_FaultMessage">
+    <wsdl:part xmlns:q73="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q73:InternalServerErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_ListApplications_MissingSearchParameterFaultFault_FaultMessage">
+    <wsdl:part xmlns:q74="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q74:MissingSearchParameterFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_ListApplications_EmptyArgumentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q75="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q75:EmptyArgumentFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_ListApplications_NotAuthorizedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q76="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q76:NotAuthorizedFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_ListApplications_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q77="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q77:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_ListApplications_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q78="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q78:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplicationDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetApplicationDetail" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplicationDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetApplicationDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplicationDetail_InternalServerErrorFaultFault_FaultMessage">
+    <wsdl:part xmlns:q79="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q79:InternalServerErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplicationDetail_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q80="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q80:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplicationDetail_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q81="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q81:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplicationDetail_UnknownApplicationGuidFaultFault_FaultMessage">
+    <wsdl:part xmlns:q82="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q82:UnknownApplicationGuidFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplicationDetail_EmptyArgumentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q83="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q83:EmptyArgumentFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplicationDetail_NotAuthorizedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q84="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q84:NotAuthorizedFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplicationDetail_ApplicationStateFaultFault_FaultMessage">
+    <wsdl:part xmlns:q85="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" name="detail" element="q85:ApplicationStateFault" />
+  </wsdl:message>
+  <wsdl:message name="ICommerceBoarding_GetApplicationDetail_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q86="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q86:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:portType name="ICommerceBoarding">
+    <wsdl:operation name="CreateApplication">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/CreateApplication" message="tns:ICommerceBoarding_CreateApplication_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/CreateApplicationResponse" message="tns:ICommerceBoarding_CreateApplication_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/CreateApplicationApplicationValidationFaultFault" name="ApplicationValidationFaultFault" message="tns:ICommerceBoarding_CreateApplication_ApplicationValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/CreateApplicationExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ICommerceBoarding_CreateApplication_ExpiredTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/CreateApplicationInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ICommerceBoarding_CreateApplication_InvalidTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/CreateApplicationAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ICommerceBoarding_CreateApplication_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/CreateApplicationCommerceBoardingServiceUnavailableFaultFault" name="CommerceBoardingServiceUnavailableFaultFault" message="tns:ICommerceBoarding_CreateApplication_CommerceBoardingServiceUnavailableFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/CreateApplicationInternalServerErrorFaultFault" name="InternalServerErrorFaultFault" message="tns:ICommerceBoarding_CreateApplication_InternalServerErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/CreateApplicationUnknownInputFieldFaultFault" name="UnknownInputFieldFaultFault" message="tns:ICommerceBoarding_CreateApplication_UnknownInputFieldFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/CreateApplicationEmptyArgumentFaultFault" name="EmptyArgumentFaultFault" message="tns:ICommerceBoarding_CreateApplication_EmptyArgumentFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/CreateApplicationUnknownApplicationProfileIdFaultFault" name="UnknownApplicationProfileIdFaultFault" message="tns:ICommerceBoarding_CreateApplication_UnknownApplicationProfileIdFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/CreateApplicationNotAuthorizedFaultFault" name="NotAuthorizedFaultFault" message="tns:ICommerceBoarding_CreateApplication_NotAuthorizedFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplication">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/UpdateApplication" message="tns:ICommerceBoarding_UpdateApplication_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/UpdateApplicationResponse" message="tns:ICommerceBoarding_UpdateApplication_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/UpdateApplicationAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ICommerceBoarding_UpdateApplication_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/UpdateApplicationApplicationValidationFaultFault" name="ApplicationValidationFaultFault" message="tns:ICommerceBoarding_UpdateApplication_ApplicationValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/UpdateApplicationNotAuthorizedFaultFault" name="NotAuthorizedFaultFault" message="tns:ICommerceBoarding_UpdateApplication_NotAuthorizedFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/UpdateApplicationExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ICommerceBoarding_UpdateApplication_ExpiredTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/UpdateApplicationUnknownApplicationGuidFaultFault" name="UnknownApplicationGuidFaultFault" message="tns:ICommerceBoarding_UpdateApplication_UnknownApplicationGuidFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/UpdateApplicationInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ICommerceBoarding_UpdateApplication_InvalidTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/UpdateApplicationInternalServerErrorFaultFault" name="InternalServerErrorFaultFault" message="tns:ICommerceBoarding_UpdateApplication_InternalServerErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/UpdateApplicationEmptyArgumentFaultFault" name="EmptyArgumentFaultFault" message="tns:ICommerceBoarding_UpdateApplication_EmptyArgumentFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/UpdateApplicationApplicationStateFaultFault" name="ApplicationStateFaultFault" message="tns:ICommerceBoarding_UpdateApplication_ApplicationStateFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/UpdateApplicationUnknownInputFieldFaultFault" name="UnknownInputFieldFaultFault" message="tns:ICommerceBoarding_UpdateApplication_UnknownInputFieldFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveApplication">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/SaveApplication" message="tns:ICommerceBoarding_SaveApplication_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/SaveApplicationResponse" message="tns:ICommerceBoarding_SaveApplication_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/SaveApplicationInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ICommerceBoarding_SaveApplication_InvalidTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/SaveApplicationApplicationValidationFaultFault" name="ApplicationValidationFaultFault" message="tns:ICommerceBoarding_SaveApplication_ApplicationValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/SaveApplicationNotAuthorizedFaultFault" name="NotAuthorizedFaultFault" message="tns:ICommerceBoarding_SaveApplication_NotAuthorizedFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/SaveApplicationExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ICommerceBoarding_SaveApplication_ExpiredTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/SaveApplicationAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ICommerceBoarding_SaveApplication_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/SaveApplicationUnknownApplicationGuidFaultFault" name="UnknownApplicationGuidFaultFault" message="tns:ICommerceBoarding_SaveApplication_UnknownApplicationGuidFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/SaveApplicationApplicationStateFaultFault" name="ApplicationStateFaultFault" message="tns:ICommerceBoarding_SaveApplication_ApplicationStateFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/SaveApplicationInternalServerErrorFaultFault" name="InternalServerErrorFaultFault" message="tns:ICommerceBoarding_SaveApplication_InternalServerErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/SaveApplicationUnknownInputFieldFaultFault" name="UnknownInputFieldFaultFault" message="tns:ICommerceBoarding_SaveApplication_UnknownInputFieldFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/SaveApplicationEmptyArgumentFaultFault" name="EmptyArgumentFaultFault" message="tns:ICommerceBoarding_SaveApplication_EmptyArgumentFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BeginQualification">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/BeginQualification" message="tns:ICommerceBoarding_BeginQualification_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/BeginQualificationResponse" message="tns:ICommerceBoarding_BeginQualification_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/BeginQualificationNotAuthorizedFaultFault" name="NotAuthorizedFaultFault" message="tns:ICommerceBoarding_BeginQualification_NotAuthorizedFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/BeginQualificationInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ICommerceBoarding_BeginQualification_InvalidTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/BeginQualificationAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ICommerceBoarding_BeginQualification_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/BeginQualificationUnknownApplicationGuidFaultFault" name="UnknownApplicationGuidFaultFault" message="tns:ICommerceBoarding_BeginQualification_UnknownApplicationGuidFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/BeginQualificationApplicationStateFaultFault" name="ApplicationStateFaultFault" message="tns:ICommerceBoarding_BeginQualification_ApplicationStateFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/BeginQualificationApplicationValidationFaultFault" name="ApplicationValidationFaultFault" message="tns:ICommerceBoarding_BeginQualification_ApplicationValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/BeginQualificationEmptyArgumentFaultFault" name="EmptyArgumentFaultFault" message="tns:ICommerceBoarding_BeginQualification_EmptyArgumentFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/BeginQualificationExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ICommerceBoarding_BeginQualification_ExpiredTokenFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIdQuestions">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetIdQuestions" message="tns:ICommerceBoarding_GetIdQuestions_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetIdQuestionsResponse" message="tns:ICommerceBoarding_GetIdQuestions_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetIdQuestionsNotAuthorizedFaultFault" name="NotAuthorizedFaultFault" message="tns:ICommerceBoarding_GetIdQuestions_NotAuthorizedFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetIdQuestionsIdentityQuestionsNotFoundFaultFault" name="IdentityQuestionsNotFoundFaultFault" message="tns:ICommerceBoarding_GetIdQuestions_IdentityQuestionsNotFoundFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetIdQuestionsEmptyArgumentFaultFault" name="EmptyArgumentFaultFault" message="tns:ICommerceBoarding_GetIdQuestions_EmptyArgumentFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetIdQuestionsExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ICommerceBoarding_GetIdQuestions_ExpiredTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetIdQuestionsInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ICommerceBoarding_GetIdQuestions_InvalidTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetIdQuestionsAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ICommerceBoarding_GetIdQuestions_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetIdQuestionsUnknownApplicationGuidFaultFault" name="UnknownApplicationGuidFaultFault" message="tns:ICommerceBoarding_GetIdQuestions_UnknownApplicationGuidFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetIdQuestionsApplicationStateFaultFault" name="ApplicationStateFaultFault" message="tns:ICommerceBoarding_GetIdQuestions_ApplicationStateFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetIdQuestionsInternalServerErrorFaultFault" name="InternalServerErrorFaultFault" message="tns:ICommerceBoarding_GetIdQuestions_InternalServerErrorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AnswerIdQuestions">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/AnswerIdQuestions" message="tns:ICommerceBoarding_AnswerIdQuestions_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/AnswerIdQuestionsResponse" message="tns:ICommerceBoarding_AnswerIdQuestions_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/AnswerIdQuestionsApplicationStateFaultFault" name="ApplicationStateFaultFault" message="tns:ICommerceBoarding_AnswerIdQuestions_ApplicationStateFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/AnswerIdQuestionsAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ICommerceBoarding_AnswerIdQuestions_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/AnswerIdQuestionsUnknownApplicationGuidFaultFault" name="UnknownApplicationGuidFaultFault" message="tns:ICommerceBoarding_AnswerIdQuestions_UnknownApplicationGuidFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/AnswerIdQuestionsUnknownQuestionsIdFaultFault" name="UnknownQuestionsIdFaultFault" message="tns:ICommerceBoarding_AnswerIdQuestions_UnknownQuestionsIdFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/AnswerIdQuestionsEmptyArgumentFaultFault" name="EmptyArgumentFaultFault" message="tns:ICommerceBoarding_AnswerIdQuestions_EmptyArgumentFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/AnswerIdQuestionsNotAuthorizedFaultFault" name="NotAuthorizedFaultFault" message="tns:ICommerceBoarding_AnswerIdQuestions_NotAuthorizedFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/AnswerIdQuestionsExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ICommerceBoarding_AnswerIdQuestions_ExpiredTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/AnswerIdQuestionsInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ICommerceBoarding_AnswerIdQuestions_InvalidTokenFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQualificationResult">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetQualificationResult" message="tns:ICommerceBoarding_GetQualificationResult_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetQualificationResultResponse" message="tns:ICommerceBoarding_GetQualificationResult_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetQualificationResultUnknownApplicationGuidFaultFault" name="UnknownApplicationGuidFaultFault" message="tns:ICommerceBoarding_GetQualificationResult_UnknownApplicationGuidFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetQualificationResultInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ICommerceBoarding_GetQualificationResult_InvalidTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetQualificationResultAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ICommerceBoarding_GetQualificationResult_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetQualificationResultInternalServerErrorFaultFault" name="InternalServerErrorFaultFault" message="tns:ICommerceBoarding_GetQualificationResult_InternalServerErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetQualificationResultEmptyArgumentFaultFault" name="EmptyArgumentFaultFault" message="tns:ICommerceBoarding_GetQualificationResult_EmptyArgumentFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetQualificationResultNotAuthorizedFaultFault" name="NotAuthorizedFaultFault" message="tns:ICommerceBoarding_GetQualificationResult_NotAuthorizedFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetQualificationResultApplicationStateFaultFault" name="ApplicationStateFaultFault" message="tns:ICommerceBoarding_GetQualificationResult_ApplicationStateFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetQualificationResultExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ICommerceBoarding_GetQualificationResult_ExpiredTokenFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApplication">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplication" message="tns:ICommerceBoarding_GetApplication_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationResponse" message="tns:ICommerceBoarding_GetApplication_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationApplicationStateFaultFault" name="ApplicationStateFaultFault" message="tns:ICommerceBoarding_GetApplication_ApplicationStateFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ICommerceBoarding_GetApplication_ExpiredTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ICommerceBoarding_GetApplication_InvalidTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ICommerceBoarding_GetApplication_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationUnknownApplicationGuidFaultFault" name="UnknownApplicationGuidFaultFault" message="tns:ICommerceBoarding_GetApplication_UnknownApplicationGuidFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationInternalServerErrorFaultFault" name="InternalServerErrorFaultFault" message="tns:ICommerceBoarding_GetApplication_InternalServerErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationEmptyArgumentFaultFault" name="EmptyArgumentFaultFault" message="tns:ICommerceBoarding_GetApplication_EmptyArgumentFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationNotAuthorizedFaultFault" name="NotAuthorizedFaultFault" message="tns:ICommerceBoarding_GetApplication_NotAuthorizedFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListApplications">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/ListApplications" message="tns:ICommerceBoarding_ListApplications_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/ListApplicationsResponse" message="tns:ICommerceBoarding_ListApplications_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/ListApplicationsAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ICommerceBoarding_ListApplications_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/ListApplicationsInternalServerErrorFaultFault" name="InternalServerErrorFaultFault" message="tns:ICommerceBoarding_ListApplications_InternalServerErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/ListApplicationsMissingSearchParameterFaultFault" name="MissingSearchParameterFaultFault" message="tns:ICommerceBoarding_ListApplications_MissingSearchParameterFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/ListApplicationsEmptyArgumentFaultFault" name="EmptyArgumentFaultFault" message="tns:ICommerceBoarding_ListApplications_EmptyArgumentFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/ListApplicationsNotAuthorizedFaultFault" name="NotAuthorizedFaultFault" message="tns:ICommerceBoarding_ListApplications_NotAuthorizedFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/ListApplicationsExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ICommerceBoarding_ListApplications_ExpiredTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/ListApplicationsInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ICommerceBoarding_ListApplications_InvalidTokenFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationDetail">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationDetail" message="tns:ICommerceBoarding_GetApplicationDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationDetailResponse" message="tns:ICommerceBoarding_GetApplicationDetail_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationDetailInternalServerErrorFaultFault" name="InternalServerErrorFaultFault" message="tns:ICommerceBoarding_GetApplicationDetail_InternalServerErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationDetailInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ICommerceBoarding_GetApplicationDetail_InvalidTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationDetailAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ICommerceBoarding_GetApplicationDetail_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationDetailUnknownApplicationGuidFaultFault" name="UnknownApplicationGuidFaultFault" message="tns:ICommerceBoarding_GetApplicationDetail_UnknownApplicationGuidFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationDetailEmptyArgumentFaultFault" name="EmptyArgumentFaultFault" message="tns:ICommerceBoarding_GetApplicationDetail_EmptyArgumentFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationDetailNotAuthorizedFaultFault" name="NotAuthorizedFaultFault" message="tns:ICommerceBoarding_GetApplicationDetail_NotAuthorizedFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationDetailApplicationStateFaultFault" name="ApplicationStateFaultFault" message="tns:ICommerceBoarding_GetApplicationDetail_ApplicationStateFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationDetailExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ICommerceBoarding_GetApplicationDetail_ExpiredTokenFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommerceBoarding_ICommerceBoarding" type="tns:ICommerceBoarding">
+    <wsp:PolicyReference URI="#CommerceBoarding_ICommerceBoarding_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateApplication">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/CreateApplication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationValidationFaultFault">
+        <soap:fault use="literal" name="ApplicationValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="CommerceBoardingServiceUnavailableFaultFault">
+        <soap:fault use="literal" name="CommerceBoardingServiceUnavailableFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InternalServerErrorFaultFault">
+        <soap:fault use="literal" name="InternalServerErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnknownInputFieldFaultFault">
+        <soap:fault use="literal" name="UnknownInputFieldFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="EmptyArgumentFaultFault">
+        <soap:fault use="literal" name="EmptyArgumentFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnknownApplicationProfileIdFaultFault">
+        <soap:fault use="literal" name="UnknownApplicationProfileIdFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotAuthorizedFaultFault">
+        <soap:fault use="literal" name="NotAuthorizedFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplication">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/UpdateApplication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ApplicationValidationFaultFault">
+        <soap:fault use="literal" name="ApplicationValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotAuthorizedFaultFault">
+        <soap:fault use="literal" name="NotAuthorizedFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnknownApplicationGuidFaultFault">
+        <soap:fault use="literal" name="UnknownApplicationGuidFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InternalServerErrorFaultFault">
+        <soap:fault use="literal" name="InternalServerErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="EmptyArgumentFaultFault">
+        <soap:fault use="literal" name="EmptyArgumentFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ApplicationStateFaultFault">
+        <soap:fault use="literal" name="ApplicationStateFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnknownInputFieldFaultFault">
+        <soap:fault use="literal" name="UnknownInputFieldFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveApplication">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/SaveApplication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ApplicationValidationFaultFault">
+        <soap:fault use="literal" name="ApplicationValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotAuthorizedFaultFault">
+        <soap:fault use="literal" name="NotAuthorizedFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnknownApplicationGuidFaultFault">
+        <soap:fault use="literal" name="UnknownApplicationGuidFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ApplicationStateFaultFault">
+        <soap:fault use="literal" name="ApplicationStateFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InternalServerErrorFaultFault">
+        <soap:fault use="literal" name="InternalServerErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnknownInputFieldFaultFault">
+        <soap:fault use="literal" name="UnknownInputFieldFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="EmptyArgumentFaultFault">
+        <soap:fault use="literal" name="EmptyArgumentFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BeginQualification">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/BeginQualification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFaultFault">
+        <soap:fault use="literal" name="NotAuthorizedFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnknownApplicationGuidFaultFault">
+        <soap:fault use="literal" name="UnknownApplicationGuidFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ApplicationStateFaultFault">
+        <soap:fault use="literal" name="ApplicationStateFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ApplicationValidationFaultFault">
+        <soap:fault use="literal" name="ApplicationValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="EmptyArgumentFaultFault">
+        <soap:fault use="literal" name="EmptyArgumentFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetIdQuestions">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetIdQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFaultFault">
+        <soap:fault use="literal" name="NotAuthorizedFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="IdentityQuestionsNotFoundFaultFault">
+        <soap:fault use="literal" name="IdentityQuestionsNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="EmptyArgumentFaultFault">
+        <soap:fault use="literal" name="EmptyArgumentFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnknownApplicationGuidFaultFault">
+        <soap:fault use="literal" name="UnknownApplicationGuidFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ApplicationStateFaultFault">
+        <soap:fault use="literal" name="ApplicationStateFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InternalServerErrorFaultFault">
+        <soap:fault use="literal" name="InternalServerErrorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AnswerIdQuestions">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/AnswerIdQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationStateFaultFault">
+        <soap:fault use="literal" name="ApplicationStateFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnknownApplicationGuidFaultFault">
+        <soap:fault use="literal" name="UnknownApplicationGuidFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnknownQuestionsIdFaultFault">
+        <soap:fault use="literal" name="UnknownQuestionsIdFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="EmptyArgumentFaultFault">
+        <soap:fault use="literal" name="EmptyArgumentFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotAuthorizedFaultFault">
+        <soap:fault use="literal" name="NotAuthorizedFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetQualificationResult">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetQualificationResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnknownApplicationGuidFaultFault">
+        <soap:fault use="literal" name="UnknownApplicationGuidFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InternalServerErrorFaultFault">
+        <soap:fault use="literal" name="InternalServerErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="EmptyArgumentFaultFault">
+        <soap:fault use="literal" name="EmptyArgumentFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotAuthorizedFaultFault">
+        <soap:fault use="literal" name="NotAuthorizedFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ApplicationStateFaultFault">
+        <soap:fault use="literal" name="ApplicationStateFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplication">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApplicationStateFaultFault">
+        <soap:fault use="literal" name="ApplicationStateFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnknownApplicationGuidFaultFault">
+        <soap:fault use="literal" name="UnknownApplicationGuidFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InternalServerErrorFaultFault">
+        <soap:fault use="literal" name="InternalServerErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="EmptyArgumentFaultFault">
+        <soap:fault use="literal" name="EmptyArgumentFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotAuthorizedFaultFault">
+        <soap:fault use="literal" name="NotAuthorizedFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListApplications">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/ListApplications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InternalServerErrorFaultFault">
+        <soap:fault use="literal" name="InternalServerErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="MissingSearchParameterFaultFault">
+        <soap:fault use="literal" name="MissingSearchParameterFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="EmptyArgumentFaultFault">
+        <soap:fault use="literal" name="EmptyArgumentFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotAuthorizedFaultFault">
+        <soap:fault use="literal" name="NotAuthorizedFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationDetail">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/ICommerceBoarding/GetApplicationDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InternalServerErrorFaultFault">
+        <soap:fault use="literal" name="InternalServerErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnknownApplicationGuidFaultFault">
+        <soap:fault use="literal" name="UnknownApplicationGuidFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="EmptyArgumentFaultFault">
+        <soap:fault use="literal" name="EmptyArgumentFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotAuthorizedFaultFault">
+        <soap:fault use="literal" name="NotAuthorizedFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ApplicationStateFaultFault">
+        <soap:fault use="literal" name="ApplicationStateFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommerceBoardingProcessing">
+    <wsdl:port name="CommerceBoarding_ICommerceBoarding" binding="tns:CommerceBoarding_ICommerceBoarding">
+      <soap:address location="https://cws-01.cert.ipcommerce.com/2.0.18/CommerceBoarding" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

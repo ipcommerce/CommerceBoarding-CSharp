@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="CreateApplication">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sessionToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="applicationProfileId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="externalApplicationId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="fields" nillable="true" type="q1:ArrayOfInputField" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfInputField">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" maxOccurs="unbounded" name="InputField" nillable="true" type="q2:InputField" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q3="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="ArrayOfInputField" nillable="true" type="q3:ArrayOfInputField" />
+  <xs:complexType name="InputField">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q4="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="InputField" nillable="true" type="q4:InputField" />
+  <xs:element name="CreateApplicationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="CreateApplicationResult" nillable="true" type="q5:Application" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="Application">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationGuid" type="ser:guid" />
+      <xs:element minOccurs="0" name="ApplicationProfileId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Created" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExternalApplicationId" nillable="true" type="xs:string" />
+      <xs:element xmlns:q6="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="Fields" nillable="true" type="q6:ArrayOfInputField" />
+      <xs:element xmlns:q7="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="Validation" nillable="true" type="q7:ApplicationValidation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q8="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="Application" nillable="true" type="q8:Application" />
+  <xs:complexType name="ApplicationValidation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsValid" type="xs:boolean" />
+      <xs:element xmlns:q9="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="ValidationDetails" nillable="true" type="q9:ArrayOfValidationDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q10="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="ApplicationValidation" nillable="true" type="q10:ApplicationValidation" />
+  <xs:complexType name="ArrayOfValidationDetail">
+    <xs:sequence>
+      <xs:element xmlns:q11="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" maxOccurs="unbounded" name="ValidationDetail" nillable="true" type="q11:ValidationDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q12="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="ArrayOfValidationDetail" nillable="true" type="q12:ArrayOfValidationDetail" />
+  <xs:complexType name="ValidationDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FieldName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsFieldValid" type="xs:boolean" />
+      <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Messages" nillable="true" type="q13:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q14="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="ValidationDetail" nillable="true" type="q14:ValidationDetail" />
+  <xs:element name="UpdateApplication">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sessionToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="applicationGuid" nillable="true" type="xs:string" />
+        <xs:element xmlns:q15="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="fields" nillable="true" type="q15:ArrayOfInputField" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateApplicationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="UpdateApplicationResult" nillable="true" type="q16:Application" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveApplication">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sessionToken" nillable="true" type="xs:string" />
+        <xs:element xmlns:q17="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="application" nillable="true" type="q17:Application" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveApplicationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="SaveApplicationResult" nillable="true" type="q18:Application" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BeginQualification">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sessionToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="applicationGuid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BeginQualificationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BeginQualificationResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIdQuestions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sessionToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="applicationGuid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIdQuestionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="GetIdQuestionsResult" nillable="true" type="q19:IdentityQuestions" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="IdentityQuestions">
+    <xs:sequence>
+      <xs:element xmlns:q20="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="Questions" nillable="true" type="q20:ArrayOfIdentityQuestion" />
+      <xs:element minOccurs="0" name="QuestionsId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q21="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="IdentityQuestions" nillable="true" type="q21:IdentityQuestions" />
+  <xs:complexType name="ArrayOfIdentityQuestion">
+    <xs:sequence>
+      <xs:element xmlns:q22="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" maxOccurs="unbounded" name="IdentityQuestion" nillable="true" type="q22:IdentityQuestion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q23="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="ArrayOfIdentityQuestion" nillable="true" type="q23:ArrayOfIdentityQuestion" />
+  <xs:complexType name="IdentityQuestion">
+    <xs:sequence>
+      <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Answers" nillable="true" type="q24:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Question" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QuestionType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SelectedAnswer" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q25="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="IdentityQuestion" nillable="true" type="q25:IdentityQuestion" />
+  <xs:element name="AnswerIdQuestions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sessionToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="applicationGuid" nillable="true" type="xs:string" />
+        <xs:element xmlns:q26="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="questions" nillable="true" type="q26:IdentityQuestions" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AnswerIdQuestionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AnswerIdQuestionsResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQualificationResult">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sessionToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="applicationGuid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetQualificationResultResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="GetQualificationResultResult" nillable="true" type="q27:QualificationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="QualificationResult">
+    <xs:sequence>
+      <xs:element xmlns:q28="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="ApplicationStatus" type="q28:ApplicationStatusEnum" />
+      <xs:element xmlns:q29="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="Decision" type="q29:QualificationStatusEnum" />
+      <xs:element xmlns:q30="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="IdentityResult" type="q30:IdentityStatusEnum" />
+      <xs:element xmlns:q31="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="QualifyDecision" type="q31:QualificationStatusEnum" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q32="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="QualificationResult" nillable="true" type="q32:QualificationResult" />
+  <xs:simpleType name="ApplicationStatusEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotSet" />
+      <xs:enumeration value="Saved" />
+      <xs:enumeration value="InQualification" />
+      <xs:enumeration value="QualificationComplete" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element xmlns:q33="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="ApplicationStatusEnum" nillable="true" type="q33:ApplicationStatusEnum" />
+  <xs:simpleType name="QualificationStatusEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotSet" />
+      <xs:enumeration value="NotStarted" />
+      <xs:enumeration value="Approved" />
+      <xs:enumeration value="Pended" />
+      <xs:enumeration value="Declined" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element xmlns:q34="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="QualificationStatusEnum" nillable="true" type="q34:QualificationStatusEnum" />
+  <xs:simpleType name="IdentityStatusEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotSet" />
+      <xs:enumeration value="NotStarted" />
+      <xs:enumeration value="QuestionsProvided" />
+      <xs:enumeration value="Pass" />
+      <xs:enumeration value="Fail" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element xmlns:q35="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="IdentityStatusEnum" nillable="true" type="q35:IdentityStatusEnum" />
+  <xs:element name="GetApplication">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sessionToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="applicationGuid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetApplicationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="GetApplicationResult" nillable="true" type="q36:Application" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListApplications">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sessionToken" nillable="true" type="xs:string" />
+        <xs:element xmlns:q37="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="parameters" nillable="true" type="q37:SearchParameters" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SearchParameters">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationProfileId" nillable="true" type="xs:string" />
+      <xs:element xmlns:q38="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="ApplicationStatus" type="q38:ApplicationStatusEnum" />
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q39="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="IdentityStatus" type="q39:IdentityStatusEnum" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PageNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+      <xs:element xmlns:q40="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="QualificationStatus" type="q40:QualificationStatusEnum" />
+      <xs:element minOccurs="0" name="SearchFromDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SearchThroughDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q41="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="SearchParameters" nillable="true" type="q41:SearchParameters" />
+  <xs:element name="ListApplicationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="ListApplicationsResult" nillable="true" type="q42:ApplicationSummaries" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ApplicationSummaries">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PageNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+      <xs:element minOccurs="0" name="SearchedFromDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SearchedThroughDate" type="xs:dateTime" />
+      <xs:element xmlns:q43="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="Summaries" nillable="true" type="q43:ArrayOfApplicationSummary" />
+      <xs:element minOccurs="0" name="TotalItems" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q44="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="ApplicationSummaries" nillable="true" type="q44:ApplicationSummaries" />
+  <xs:complexType name="ArrayOfApplicationSummary">
+    <xs:sequence>
+      <xs:element xmlns:q45="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" maxOccurs="unbounded" name="ApplicationSummary" nillable="true" type="q45:ApplicationSummary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q46="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="ArrayOfApplicationSummary" nillable="true" type="q46:ArrayOfApplicationSummary" />
+  <xs:complexType name="ApplicationSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicantEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicantFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicantLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationGuid" type="ser:guid" />
+      <xs:element xmlns:q47="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="ApplicationStatusEnum" type="q47:ApplicationStatusEnum" />
+      <xs:element minOccurs="0" name="BusinessCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessDbaName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessLegalName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BusinessZip" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExternalApplicationId" nillable="true" type="xs:string" />
+      <xs:element xmlns:q48="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="IdentityStatusEnum" type="q48:IdentityStatusEnum" />
+      <xs:element xmlns:q49="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="QualificationStatusEnum" type="q49:QualificationStatusEnum" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q50="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="ApplicationSummary" nillable="true" type="q50:ApplicationSummary" />
+  <xs:element name="GetApplicationDetail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sessionToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="applicationGuid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetApplicationDetailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" name="GetApplicationDetailResult" nillable="true" type="q51:ApplicationDetail" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ApplicationDetail">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q52="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" base="q52:Application">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ApplicationStatus" type="q52:ApplicationStatusEnum" />
+          <xs:element minOccurs="0" name="IdentityStatus" type="q52:IdentityStatusEnum" />
+          <xs:element minOccurs="0" name="Log" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="QualificationStatus" type="q52:QualificationStatusEnum" />
+          <xs:element minOccurs="0" name="QualifierResponses" nillable="true" type="q52:ArrayOfQualifierResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q53="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="ApplicationDetail" nillable="true" type="q53:ApplicationDetail" />
+  <xs:complexType name="ArrayOfQualifierResponse">
+    <xs:sequence>
+      <xs:element xmlns:q54="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" minOccurs="0" maxOccurs="unbounded" name="QualifierResponse" nillable="true" type="q54:QualifierResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q55="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="ArrayOfQualifierResponse" nillable="true" type="q55:ArrayOfQualifierResponse" />
+  <xs:complexType name="QualifierResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="QualifierName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResponseKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResponseValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q56="http://schemas.ipcommerce.com/CommerceBoarding/v1.0" name="QualifierResponse" nillable="true" type="q56:QualifierResponse" />
+</xs:schema>

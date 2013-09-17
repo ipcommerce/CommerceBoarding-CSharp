@@ -1,0 +1,669 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://schemas.ipcommerce.com/Identity/2.0/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TokenCredSignOnService" targetNamespace="http://schemas.ipcommerce.com/Identity/2.0/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSHttpBinding_ITokenCredSignOnService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="BasicHttpBinding_ITokenCredSignOnService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.ipcommerce.com/Identity/2.0/Imports">
+      <xsd:import schemaLocation="" namespace="http://schemas.ipcommerce.com/Ipc.General.WCF.Contracts.Common" />
+      <xsd:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="" namespace="http://schemas.ipcommerce.com/Ipc.General.WCF.Contracts.Common/External" />
+      <xsd:import schemaLocation="" namespace="http://schemas.ipcommerce.com/Identity/2.0/" />
+      <xsd:import schemaLocation="" namespace="http://schemas.ipcommerce.com/Identity/1.0/" />
+      <xsd:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITokenCredSignOnService_Ping_InputMessage">
+    <wsdl:part xmlns:q1="http://schemas.ipcommerce.com/Ipc.General.WCF.Contracts.Common" name="parameters" element="q1:Ping" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_Ping_OutputMessage">
+    <wsdl:part xmlns:q2="http://schemas.ipcommerce.com/Ipc.General.WCF.Contracts.Common" name="parameters" element="q2:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_OpenSignOn_InputMessage">
+    <wsdl:part name="parameters" element="tns:OpenSignOn" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_OpenSignOn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OpenSignOnResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_OpenSignOn_AuthorizationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q3:AuthorizationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_OpenSignOn_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q4:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_OpenSignOnToSecurityDomains_InputMessage">
+    <wsdl:part name="parameters" element="tns:OpenSignOnToSecurityDomains" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_OpenSignOnToSecurityDomains_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OpenSignOnToSecurityDomainsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_OpenSignOnToSecurityDomains_SecurityDomainNotFoundFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:SecurityDomainNotFoundFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_OpenSignOnToSecurityDomains_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q5:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_OpenSignOnToSecurityDomains_AuthorizationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q6:AuthorizationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnAndAddClaims_InputMessage">
+    <wsdl:part name="parameters" element="tns:SignOnAndAddClaims" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnAndAddClaims_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SignOnAndAddClaimsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnAndAddClaims_SystemFaultFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q7:SystemFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnAndAddClaims_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q8:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnAndAddClaims_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q9:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnAndAddClaims_AuthorizationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q10:AuthorizationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnAndAddClaims_ClaimMappingsNotFoundFaultFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q11:ClaimMappingsNotFoundFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnAndAddClaims_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q12:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOn_InputMessage">
+    <wsdl:part name="parameters" element="tns:DelegatedSignOn" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DelegatedSignOnResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOn_ClaimMappingsNotFoundFaultFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q13:ClaimMappingsNotFoundFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOn_AuthorizationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q14:AuthorizationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOn_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q15:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOn_SystemFaultFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q16:SystemFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOn_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q17="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q17:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOn_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q18="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q18:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOnWithClaims_InputMessage">
+    <wsdl:part name="parameters" element="tns:DelegatedSignOnWithClaims" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOnWithClaims_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DelegatedSignOnWithClaimsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOnWithClaims_AuthorizationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q19="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q19:AuthorizationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOnWithClaims_ClaimMappingsNotFoundFaultFault_FaultMessage">
+    <wsdl:part xmlns:q20="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q20:ClaimMappingsNotFoundFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOnWithClaims_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q21="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q21:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOnWithClaims_SystemFaultFault_FaultMessage">
+    <wsdl:part xmlns:q22="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q22:SystemFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOnWithClaims_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q23="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q23:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_DelegatedSignOnWithClaims_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q24="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q24:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOn_InputMessage">
+    <wsdl:part name="parameters" element="tns:SignOn" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SignOnResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOn_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q25="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q25:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOn_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q26="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q26:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOn_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q27="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q27:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOn_SystemFaultFault_FaultMessage">
+    <wsdl:part xmlns:q28="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q28:SystemFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOn_AuthorizationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q29="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q29:AuthorizationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnToSecurityDomains_InputMessage">
+    <wsdl:part name="parameters" element="tns:SignOnToSecurityDomains" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnToSecurityDomains_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SignOnToSecurityDomainsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnToSecurityDomains_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q30="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q30:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnToSecurityDomains_InvalidTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q31="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q31:InvalidTokenFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnToSecurityDomains_AuthorizationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q32="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q32:AuthorizationFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnToSecurityDomains_SecurityDomainNotSpecifiedFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:SecurityDomainNotSpecifiedFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnToSecurityDomains_SecurityDomainNotFoundFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:SecurityDomainNotFoundFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnToSecurityDomains_SecurityDomainRequirementFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:SecurityDomainRequirementFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnToSecurityDomains_SystemFaultFault_FaultMessage">
+    <wsdl:part xmlns:q33="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q33:SystemFault" />
+  </wsdl:message>
+  <wsdl:message name="ITokenCredSignOnService_SignOnToSecurityDomains_ExpiredTokenFaultFault_FaultMessage">
+    <wsdl:part xmlns:q34="http://schemas.ipcommerce.com/Identity/1.0/" name="detail" element="q34:ExpiredTokenFault" />
+  </wsdl:message>
+  <wsdl:portType name="ITokenCredSignOnService">
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/Ipc.General.WCF.Contracts.Common/IExternallyFacingStandardOperations/Ping" message="tns:ITokenCredSignOnService_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/Ipc.General.WCF.Contracts.Common/IExternallyFacingStandardOperations/PingResponse" message="tns:ITokenCredSignOnService_Ping_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OpenSignOn">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/OpenSignOn" message="tns:ITokenCredSignOnService_OpenSignOn_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/IOpenCredSignOnService/OpenSignOnResponse" message="tns:ITokenCredSignOnService_OpenSignOn_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/IOpenCredSignOnService/OpenSignOnAuthorizationFaultFault" name="AuthorizationFaultFault" message="tns:ITokenCredSignOnService_OpenSignOn_AuthorizationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/IOpenCredSignOnService/OpenSignOnAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ITokenCredSignOnService_OpenSignOn_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OpenSignOnToSecurityDomains">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/OpenSignOnToSecurityDomains" message="tns:ITokenCredSignOnService_OpenSignOnToSecurityDomains_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/IOpenCredSignOnService/OpenSignOnToSecurityDomainsResponse" message="tns:ITokenCredSignOnService_OpenSignOnToSecurityDomains_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/IOpenCredSignOnService/OpenSignOnToSecurityDomainsSecurityDomainNotFoundFaultFault" name="SecurityDomainNotFoundFaultFault" message="tns:ITokenCredSignOnService_OpenSignOnToSecurityDomains_SecurityDomainNotFoundFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/IOpenCredSignOnService/OpenSignOnToSecurityDomainsAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ITokenCredSignOnService_OpenSignOnToSecurityDomains_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/IOpenCredSignOnService/OpenSignOnToSecurityDomainsAuthorizationFaultFault" name="AuthorizationFaultFault" message="tns:ITokenCredSignOnService_OpenSignOnToSecurityDomains_AuthorizationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SignOnAndAddClaims">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/SignOnAndAddClaims" message="tns:ITokenCredSignOnService_SignOnAndAddClaims_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnAndAddClaimsResponse" message="tns:ITokenCredSignOnService_SignOnAndAddClaims_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnAndAddClaimsSystemFaultFault" name="SystemFaultFault" message="tns:ITokenCredSignOnService_SignOnAndAddClaims_SystemFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnAndAddClaimsInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ITokenCredSignOnService_SignOnAndAddClaims_InvalidTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnAndAddClaimsExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ITokenCredSignOnService_SignOnAndAddClaims_ExpiredTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnAndAddClaimsAuthorizationFaultFault" name="AuthorizationFaultFault" message="tns:ITokenCredSignOnService_SignOnAndAddClaims_AuthorizationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnAndAddClaimsClaimMappingsNotFoundFaultFault" name="ClaimMappingsNotFoundFaultFault" message="tns:ITokenCredSignOnService_SignOnAndAddClaims_ClaimMappingsNotFoundFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnAndAddClaimsAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ITokenCredSignOnService_SignOnAndAddClaims_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DelegatedSignOn">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/DelegatedSignOn" message="tns:ITokenCredSignOnService_DelegatedSignOn_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnResponse" message="tns:ITokenCredSignOnService_DelegatedSignOn_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnClaimMappingsNotFoundFaultFault" name="ClaimMappingsNotFoundFaultFault" message="tns:ITokenCredSignOnService_DelegatedSignOn_ClaimMappingsNotFoundFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnAuthorizationFaultFault" name="AuthorizationFaultFault" message="tns:ITokenCredSignOnService_DelegatedSignOn_AuthorizationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ITokenCredSignOnService_DelegatedSignOn_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnSystemFaultFault" name="SystemFaultFault" message="tns:ITokenCredSignOnService_DelegatedSignOn_SystemFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ITokenCredSignOnService_DelegatedSignOn_ExpiredTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ITokenCredSignOnService_DelegatedSignOn_InvalidTokenFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DelegatedSignOnWithClaims">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/DelegatedSignOnWithClaims" message="tns:ITokenCredSignOnService_DelegatedSignOnWithClaims_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnWithClaimsResponse" message="tns:ITokenCredSignOnService_DelegatedSignOnWithClaims_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnWithClaimsAuthorizationFaultFault" name="AuthorizationFaultFault" message="tns:ITokenCredSignOnService_DelegatedSignOnWithClaims_AuthorizationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnWithClaimsClaimMappingsNotFoundFaultFault" name="ClaimMappingsNotFoundFaultFault" message="tns:ITokenCredSignOnService_DelegatedSignOnWithClaims_ClaimMappingsNotFoundFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnWithClaimsAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ITokenCredSignOnService_DelegatedSignOnWithClaims_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnWithClaimsSystemFaultFault" name="SystemFaultFault" message="tns:ITokenCredSignOnService_DelegatedSignOnWithClaims_SystemFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnWithClaimsInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ITokenCredSignOnService_DelegatedSignOnWithClaims_InvalidTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/DelegatedSignOnWithClaimsExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ITokenCredSignOnService_DelegatedSignOnWithClaims_ExpiredTokenFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SignOn">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/SignOn" message="tns:ITokenCredSignOnService_SignOn_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnResponse" message="tns:ITokenCredSignOnService_SignOn_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ITokenCredSignOnService_SignOn_ExpiredTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ITokenCredSignOnService_SignOn_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ITokenCredSignOnService_SignOn_InvalidTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnSystemFaultFault" name="SystemFaultFault" message="tns:ITokenCredSignOnService_SignOn_SystemFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnAuthorizationFaultFault" name="AuthorizationFaultFault" message="tns:ITokenCredSignOnService_SignOn_AuthorizationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SignOnToSecurityDomains">
+      <wsdl:input wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/SignOnToSecurityDomains" message="tns:ITokenCredSignOnService_SignOnToSecurityDomains_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnToSecurityDomainsResponse" message="tns:ITokenCredSignOnService_SignOnToSecurityDomains_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnToSecurityDomainsAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:ITokenCredSignOnService_SignOnToSecurityDomains_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnToSecurityDomainsInvalidTokenFaultFault" name="InvalidTokenFaultFault" message="tns:ITokenCredSignOnService_SignOnToSecurityDomains_InvalidTokenFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnToSecurityDomainsAuthorizationFaultFault" name="AuthorizationFaultFault" message="tns:ITokenCredSignOnService_SignOnToSecurityDomains_AuthorizationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnToSecurityDomainsSecurityDomainNotSpecifiedFaultFault" name="SecurityDomainNotSpecifiedFaultFault" message="tns:ITokenCredSignOnService_SignOnToSecurityDomains_SecurityDomainNotSpecifiedFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnToSecurityDomainsSecurityDomainNotFoundFaultFault" name="SecurityDomainNotFoundFaultFault" message="tns:ITokenCredSignOnService_SignOnToSecurityDomains_SecurityDomainNotFoundFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnToSecurityDomainsSecurityDomainRequirementFaultFault" name="SecurityDomainRequirementFaultFault" message="tns:ITokenCredSignOnService_SignOnToSecurityDomains_SecurityDomainRequirementFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnToSecurityDomainsSystemFaultFault" name="SystemFaultFault" message="tns:ITokenCredSignOnService_SignOnToSecurityDomains_SystemFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.ipcommerce.com/Identity/2.0/ITokenCredSignOnService/SignOnToSecurityDomainsExpiredTokenFaultFault" name="ExpiredTokenFaultFault" message="tns:ITokenCredSignOnService_SignOnToSecurityDomains_ExpiredTokenFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSHttpBinding_ITokenCredSignOnService" type="tns:ITokenCredSignOnService">
+    <wsp:PolicyReference URI="#WSHttpBinding_ITokenCredSignOnService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ping">
+      <soap12:operation soapAction="http://schemas.ipcommerce.com/Ipc.General.WCF.Contracts.Common/IExternallyFacingStandardOperations/Ping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenSignOn">
+      <soap12:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/OpenSignOn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap12:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap12:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="OpenSignOnToSecurityDomains">
+      <soap12:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/OpenSignOnToSecurityDomains" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SecurityDomainNotFoundFaultFault">
+        <soap12:fault use="literal" name="SecurityDomainNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap12:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap12:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SignOnAndAddClaims">
+      <soap12:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/SignOnAndAddClaims" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SystemFaultFault">
+        <soap12:fault use="literal" name="SystemFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap12:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap12:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap12:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ClaimMappingsNotFoundFaultFault">
+        <soap12:fault use="literal" name="ClaimMappingsNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap12:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DelegatedSignOn">
+      <soap12:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/DelegatedSignOn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ClaimMappingsNotFoundFaultFault">
+        <soap12:fault use="literal" name="ClaimMappingsNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap12:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap12:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SystemFaultFault">
+        <soap12:fault use="literal" name="SystemFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap12:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap12:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DelegatedSignOnWithClaims">
+      <soap12:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/DelegatedSignOnWithClaims" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap12:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ClaimMappingsNotFoundFaultFault">
+        <soap12:fault use="literal" name="ClaimMappingsNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap12:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SystemFaultFault">
+        <soap12:fault use="literal" name="SystemFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap12:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap12:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SignOn">
+      <soap12:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/SignOn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap12:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap12:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap12:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SystemFaultFault">
+        <soap12:fault use="literal" name="SystemFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap12:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SignOnToSecurityDomains">
+      <soap12:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/SignOnToSecurityDomains" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap12:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap12:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap12:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SecurityDomainNotSpecifiedFaultFault">
+        <soap12:fault use="literal" name="SecurityDomainNotSpecifiedFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SecurityDomainNotFoundFaultFault">
+        <soap12:fault use="literal" name="SecurityDomainNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SecurityDomainRequirementFaultFault">
+        <soap12:fault use="literal" name="SecurityDomainRequirementFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SystemFaultFault">
+        <soap12:fault use="literal" name="SystemFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap12:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_ITokenCredSignOnService" type="tns:ITokenCredSignOnService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_ITokenCredSignOnService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/Ipc.General.WCF.Contracts.Common/IExternallyFacingStandardOperations/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenSignOn">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/OpenSignOn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="OpenSignOnToSecurityDomains">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/OpenSignOnToSecurityDomains" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SecurityDomainNotFoundFaultFault">
+        <soap:fault use="literal" name="SecurityDomainNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SignOnAndAddClaims">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/SignOnAndAddClaims" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SystemFaultFault">
+        <soap:fault use="literal" name="SystemFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ClaimMappingsNotFoundFaultFault">
+        <soap:fault use="literal" name="ClaimMappingsNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DelegatedSignOn">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/DelegatedSignOn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ClaimMappingsNotFoundFaultFault">
+        <soap:fault use="literal" name="ClaimMappingsNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SystemFaultFault">
+        <soap:fault use="literal" name="SystemFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DelegatedSignOnWithClaims">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/DelegatedSignOnWithClaims" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ClaimMappingsNotFoundFaultFault">
+        <soap:fault use="literal" name="ClaimMappingsNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SystemFaultFault">
+        <soap:fault use="literal" name="SystemFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SignOn">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/SignOn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SystemFaultFault">
+        <soap:fault use="literal" name="SystemFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SignOnToSecurityDomains">
+      <soap:operation soapAction="http://schemas.ipcommerce.com/Identity/2.0/TokenCred/SignOnToSecurityDomains" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTokenFaultFault">
+        <soap:fault use="literal" name="InvalidTokenFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="AuthorizationFaultFault">
+        <soap:fault use="literal" name="AuthorizationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SecurityDomainNotSpecifiedFaultFault">
+        <soap:fault use="literal" name="SecurityDomainNotSpecifiedFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SecurityDomainNotFoundFaultFault">
+        <soap:fault use="literal" name="SecurityDomainNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SecurityDomainRequirementFaultFault">
+        <soap:fault use="literal" name="SecurityDomainRequirementFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="SystemFaultFault">
+        <soap:fault use="literal" name="SystemFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExpiredTokenFaultFault">
+        <soap:fault use="literal" name="ExpiredTokenFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TokenCredSignOnService">
+    <wsdl:port name="WSHttpBinding_ITokenCredSignOnService" binding="tns:WSHttpBinding_ITokenCredSignOnService">
+      <soap12:address location="https://localhost/SSOAPIs/SignOn/TokenCred/wshttp/SignOnService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>https://localhost/SSOAPIs/SignOn/TokenCred/wshttp/SignOnService</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_ITokenCredSignOnService" binding="tns:BasicHttpBinding_ITokenCredSignOnService">
+      <soap:address location="https://localhost/SSOAPIs/SignOn/TokenCred/basic/SignOnService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

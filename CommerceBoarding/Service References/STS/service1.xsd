@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.ipcommerce.com/Identity/2.0/" elementFormDefault="qualified" targetNamespace="http://schemas.ipcommerce.com/Identity/2.0/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="" namespace="http://schemas.ipcommerce.com/Identity/1.0/" />
+  <xs:element name="OpenSignOn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="secret" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OpenSignOnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OpenSignOnResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OpenSignOnToSecurityDomains">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="secret" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="securityDomainNames" nillable="true" type="q1:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OpenSignOnToSecurityDomainsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OpenSignOnToSecurityDomainsResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SecurityDomainNotFoundFault">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.ipcommerce.com/Identity/1.0/" base="q2:BaseFault">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SecurityDomainNotFoundFault" nillable="true" type="tns:SecurityDomainNotFoundFault" />
+  <xs:element name="SignOnAndAddClaims">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="identityToken" nillable="true" type="xs:string" />
+        <xs:element xmlns:q3="http://schemas.ipcommerce.com/Identity/1.0/" minOccurs="0" name="claims" nillable="true" type="q3:ArrayOfClaimMetaData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignOnAndAddClaimsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SignOnAndAddClaimsResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DelegatedSignOn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="identityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="onBehalfOfSk" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DelegatedSignOnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DelegatedSignOnResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DelegatedSignOnWithClaims">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="identityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="onBehalfOfSk" nillable="true" type="xs:string" />
+        <xs:element xmlns:q4="http://schemas.ipcommerce.com/Identity/1.0/" minOccurs="0" name="claims" nillable="true" type="q4:ArrayOfClaimMetaData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DelegatedSignOnWithClaimsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DelegatedSignOnWithClaimsResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignOn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="identityToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignOnResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SignOnResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignOnToSecurityDomains">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="identityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="issueSingleUseArtifact" type="xs:boolean" />
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="securityDomainNames" nillable="true" type="q5:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignOnToSecurityDomainsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SignOnToSecurityDomainsResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SecurityDomainNotSpecifiedFault">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.ipcommerce.com/Identity/1.0/" base="q6:BaseFault">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SecurityDomainNotSpecifiedFault" nillable="true" type="tns:SecurityDomainNotSpecifiedFault" />
+  <xs:complexType name="SecurityDomainRequirementFault">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.ipcommerce.com/Identity/1.0/" base="q7:BaseFault">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SecurityDomainRequirementFault" nillable="true" type="tns:SecurityDomainRequirementFault" />
+</xs:schema>

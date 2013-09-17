@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" elementFormDefault="qualified" targetNamespace="http://schemas.ipcommerce.com/CommerceBoarding/v1.0/Faults" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ApplicationValidationFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommerceBoardingFaultBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ApplicationValidationFault" nillable="true" type="tns:ApplicationValidationFault" />
+  <xs:complexType name="CommerceBoardingFaultBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorId" type="xs:int" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Operation" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommerceBoardingFaultBase" nillable="true" type="tns:CommerceBoardingFaultBase" />
+  <xs:complexType name="CommerceBoardingServiceUnavailableFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommerceBoardingFaultBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CommerceBoardingServiceUnavailableFault" nillable="true" type="tns:CommerceBoardingServiceUnavailableFault" />
+  <xs:complexType name="InternalServerErrorFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommerceBoardingFaultBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="InternalServerErrorFault" nillable="true" type="tns:InternalServerErrorFault" />
+  <xs:complexType name="UnknownInputFieldFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommerceBoardingFaultBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UnknownInputFieldFault" nillable="true" type="tns:UnknownInputFieldFault" />
+  <xs:complexType name="EmptyArgumentFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommerceBoardingFaultBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EmptyArgumentFault" nillable="true" type="tns:EmptyArgumentFault" />
+  <xs:complexType name="UnknownApplicationProfileIdFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommerceBoardingFaultBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UnknownApplicationProfileIdFault" nillable="true" type="tns:UnknownApplicationProfileIdFault" />
+  <xs:complexType name="NotAuthorizedFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommerceBoardingFaultBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NotAuthorizedFault" nillable="true" type="tns:NotAuthorizedFault" />
+  <xs:complexType name="UnknownApplicationGuidFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommerceBoardingFaultBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UnknownApplicationGuidFault" nillable="true" type="tns:UnknownApplicationGuidFault" />
+  <xs:complexType name="ApplicationStateFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommerceBoardingFaultBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ApplicationStateFault" nillable="true" type="tns:ApplicationStateFault" />
+  <xs:complexType name="IdentityQuestionsNotFoundFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommerceBoardingFaultBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IdentityQuestionsNotFoundFault" nillable="true" type="tns:IdentityQuestionsNotFoundFault" />
+  <xs:complexType name="UnknownQuestionsIdFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommerceBoardingFaultBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UnknownQuestionsIdFault" nillable="true" type="tns:UnknownQuestionsIdFault" />
+  <xs:complexType name="MissingSearchParameterFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CommerceBoardingFaultBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MissingSearchParameterFault" nillable="true" type="tns:MissingSearchParameterFault" />
+</xs:schema>
