@@ -412,9 +412,10 @@ namespace CommerceBoarding
             for (int j = 0; j < i; j++ )
             {
                 appResponse = appResponse + "<InputField><InputKey>" + _inputFields[j].Key + "</InputKey><InputValue>" +
-                              _inputFields[j].Value + "</InputValue></InputField>";
+                              (_inputFields[j].Value != null ? _inputFields[j].Value.Replace("&", "&amp;") : null) +
+                              "</InputValue></InputField>";
                 if (_inputFields[j].Key == "BusinessName")
-                    _businessName = _inputFields[j].Value.ToString();
+                    _businessName = _inputFields[j].Value;
             }
             int q = _qualifierResponses.Count();
             for (int l = 0; l < q; l++)
