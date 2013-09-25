@@ -1021,7 +1021,7 @@ namespace CommerceBoarding
 
                     if (checkBox1.Checked)
                     {
-                        string log = result.Log.ToString();
+                        string log = result.Log ?? "log not available";
                         log = log.Replace("\n", Environment.NewLine);
                         ScrollableMessageBox logBox = new ScrollableMessageBox();
                         logBox.Show(log);
